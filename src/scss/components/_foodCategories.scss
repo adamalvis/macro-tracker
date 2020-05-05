@@ -1,0 +1,23 @@
+.food-categories {
+  .card {
+    .card-content {
+      .list {
+        .list-item {
+          position: relative;
+
+          span {
+            width: 100%;
+            padding-right: 50px;
+          }
+
+          button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+}

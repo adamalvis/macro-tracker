@@ -1,0 +1,25 @@
+.primary-menu {
+  position: fixed;
+  top: 0px;
+  right: -300px;
+  width: 300px;
+  padding: 75px 15px 15px 15px;
+  height: 100vh;
+  background: $darkGray;
+  transition: right 0.3s;
+  z-index: 998;
+
+  &.open {
+    right: 0px;
+  }
+
+  .menu-list {
+    a {
+      color: #fff;
+
+      .fa {
+        margin-right: 10px;
+      }
+    }
+  }
+}
