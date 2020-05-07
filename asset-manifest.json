@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/macro-tracker/static/css/main.3707d473.chunk.css",
+    "main.js": "/macro-tracker/static/js/main.b795b1ba.chunk.js",
+    "main.js.map": "/macro-tracker/static/js/main.b795b1ba.chunk.js.map",
+    "runtime-main.js": "/macro-tracker/static/js/runtime-main.2d32e78f.js",
+    "runtime-main.js.map": "/macro-tracker/static/js/runtime-main.2d32e78f.js.map",
+    "static/css/2.fe8af591.chunk.css": "/macro-tracker/static/css/2.fe8af591.chunk.css",
+    "static/js/2.30b08f79.chunk.js": "/macro-tracker/static/js/2.30b08f79.chunk.js",
+    "static/js/2.30b08f79.chunk.js.map": "/macro-tracker/static/js/2.30b08f79.chunk.js.map",
+    "index.html": "/macro-tracker/index.html",
+    "precache-manifest.56485156a3047004a4aeac041366916d.js": "/macro-tracker/precache-manifest.56485156a3047004a4aeac041366916d.js",
+    "service-worker.js": "/macro-tracker/service-worker.js",
+    "static/css/2.fe8af591.chunk.css.map": "/macro-tracker/static/css/2.fe8af591.chunk.css.map",
+    "static/css/main.3707d473.chunk.css.map": "/macro-tracker/static/css/main.3707d473.chunk.css.map",
+    "static/js/2.30b08f79.chunk.js.LICENSE.txt": "/macro-tracker/static/js/2.30b08f79.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2d32e78f.js",
+    "static/css/2.fe8af591.chunk.css",
+    "static/js/2.30b08f79.chunk.js",
+    "static/css/main.3707d473.chunk.css",
+    "static/js/main.b795b1ba.chunk.js"
+  ]
+}
