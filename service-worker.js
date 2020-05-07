@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://adamalvis.github.io/macro-tracker/precache-manifest.0e59b3717988336e68b2907afeb12d16.js"
+  "https://adamalvis.github.io/macro-tracker/precache-manifest.64089dabcc6b7cf771b2c2dc27092506.js"
 );
 
 self.addEventListener('message', (event) => {

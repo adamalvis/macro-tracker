@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "https://adamalvis.github.io/macro-tracker/static/css/main.3707d473.chunk.css",
-    "main.js": "https://adamalvis.github.io/macro-tracker/static/js/main.d2411f9f.chunk.js",
-    "main.js.map": "https://adamalvis.github.io/macro-tracker/static/js/main.d2411f9f.chunk.js.map",
+    "main.js": "https://adamalvis.github.io/macro-tracker/static/js/main.a5507c4e.chunk.js",
+    "main.js.map": "https://adamalvis.github.io/macro-tracker/static/js/main.a5507c4e.chunk.js.map",
     "runtime-main.js": "https://adamalvis.github.io/macro-tracker/static/js/runtime-main.71084014.js",
     "runtime-main.js.map": "https://adamalvis.github.io/macro-tracker/static/js/runtime-main.71084014.js.map",
     "static/css/2.fe8af591.chunk.css": "https://adamalvis.github.io/macro-tracker/static/css/2.fe8af591.chunk.css",
-    "static/js/2.886656fe.chunk.js": "https://adamalvis.github.io/macro-tracker/static/js/2.886656fe.chunk.js",
-    "static/js/2.886656fe.chunk.js.map": "https://adamalvis.github.io/macro-tracker/static/js/2.886656fe.chunk.js.map",
+    "static/js/2.30b08f79.chunk.js": "https://adamalvis.github.io/macro-tracker/static/js/2.30b08f79.chunk.js",
+    "static/js/2.30b08f79.chunk.js.map": "https://adamalvis.github.io/macro-tracker/static/js/2.30b08f79.chunk.js.map",
     "index.html": "https://adamalvis.github.io/macro-tracker/index.html",
-    "precache-manifest.0e59b3717988336e68b2907afeb12d16.js": "https://adamalvis.github.io/macro-tracker/precache-manifest.0e59b3717988336e68b2907afeb12d16.js",
+    "precache-manifest.64089dabcc6b7cf771b2c2dc27092506.js": "https://adamalvis.github.io/macro-tracker/precache-manifest.64089dabcc6b7cf771b2c2dc27092506.js",
     "service-worker.js": "https://adamalvis.github.io/macro-tracker/service-worker.js",
     "static/css/2.fe8af591.chunk.css.map": "https://adamalvis.github.io/macro-tracker/static/css/2.fe8af591.chunk.css.map",
     "static/css/main.3707d473.chunk.css.map": "https://adamalvis.github.io/macro-tracker/static/css/main.3707d473.chunk.css.map",
-    "static/js/2.886656fe.chunk.js.LICENSE.txt": "https://adamalvis.github.io/macro-tracker/static/js/2.886656fe.chunk.js.LICENSE.txt"
+    "static/js/2.30b08f79.chunk.js.LICENSE.txt": "https://adamalvis.github.io/macro-tracker/static/js/2.30b08f79.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.71084014.js",
     "static/css/2.fe8af591.chunk.css",
-    "static/js/2.886656fe.chunk.js",
+    "static/js/2.30b08f79.chunk.js",
     "static/css/main.3707d473.chunk.css",
-    "static/js/main.d2411f9f.chunk.js"
+    "static/js/main.a5507c4e.chunk.js"
   ]
 }
