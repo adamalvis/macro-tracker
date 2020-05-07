@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Section, Container } from 'react-bulma-components';
 import thunk from 'redux-thunk';
 import PrimaryMenu from './components/PrimaryMenu';
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="app-container">
         <Provider store={store}>
-          <BrowserRouter>
+          <HashRouter>
             <PrimaryNav />
             <PrimaryMenu />
             <div className="page-container">
@@ -36,7 +36,7 @@ class App extends Component {
               </Section>
               <Notifications />
             </div>
-          </BrowserRouter>
+          </HashRouter>
         </Provider>
       </div>
     );
