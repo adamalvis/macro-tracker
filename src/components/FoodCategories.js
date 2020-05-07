@@ -23,7 +23,7 @@ class FoodCategories extends Component {
               <Card.Header.Title className="has-text-white">{CATEGORY_LABELS[id]}</Card.Header.Title>
             </Card.Header>
             <Card.Content>
-              {items.length && (
+              {items.length > 0 && (
                 <List>
                   {items.map((item, itemIndex) => (
                     <List.Item key={`cat${index}-food${itemIndex}`}>
