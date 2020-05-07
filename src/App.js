@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="app-container">
         <Provider store={store}>
-          <HashRouter>
+          <HashRouter basename="/">
             <PrimaryNav />
             <PrimaryMenu />
             <div className="page-container">
