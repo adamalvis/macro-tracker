@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "293fa25ac693562ca4a93154c7689170",
+    "revision": "40caf7fc169808ee2a26c1c5a8d1fcb4",
     "url": "/macro-tracker/index.html"
   },
   {
