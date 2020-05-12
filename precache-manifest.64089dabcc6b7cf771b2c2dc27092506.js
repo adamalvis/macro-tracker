@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5a74d770d0e4b6dc2b87ca2e1874fa60",
+    "revision": "ab02362042bdbcbea08306fedf65d84a",
     "url": "https://adamalvis.github.io/macro-tracker/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://adamalvis.github.io/macro-tracker/static/css/2.fe8af591.chunk.css"
   },
   {
-    "revision": "2843b754dfe21f069132",
+    "revision": "1ee981c2f68a1408d088",
     "url": "https://adamalvis.github.io/macro-tracker/static/css/main.3707d473.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://adamalvis.github.io/macro-tracker/static/js/2.30b08f79.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2843b754dfe21f069132",
-    "url": "https://adamalvis.github.io/macro-tracker/static/js/main.d8e77aa9.chunk.js"
+    "revision": "1ee981c2f68a1408d088",
+    "url": "https://adamalvis.github.io/macro-tracker/static/js/main.a5507c4e.chunk.js"
   },
   {
     "revision": "692cab4dd57045f9741b",
