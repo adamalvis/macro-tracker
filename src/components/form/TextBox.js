@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bulma-components';
 
-class TextBox extends Component {
-  constructor(props) {
-    super(props);
+function TextBox(props) {
+  const { value, label, error, placeholder, type, onChange } = props;
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    const { onChange } = this.props;
+  function handleChange(e) {
     const { value } = e.target;
 
     if (typeof onChange === 'function') {
@@ -18,28 +13,24 @@ class TextBox extends Component {
     }
   }
 
-  render() {
-    const { value, label, error, placeholder, type } = this.props;
-
-    return (
-      <Form.Field>
-        {label && (
-          <Form.Label>{label}</Form.Label>
+  return (
+    <Form.Field>
+      {label && (
+        <Form.Label>{label}</Form.Label>
+      )}
+      <Form.Control>
+        <Form.Input
+          placeholder={placeholder}
+          value={value}
+          type={type}
+          onChange={handleChange}
+        />
+        {error && (
+          <Form.Help color="danger">{error}</Form.Help>
         )}
-        <Form.Control>
-          <Form.Input
-            placeholder={placeholder}
-            value={value}
-            type={type}
-            onChange={this.handleChange}
-          />
-          {error && (
-            <Form.Help color="danger">{error}</Form.Help>
-          )}
-        </Form.Control>
-      </Form.Field>
-    );
-  }
+      </Form.Control>
+    </Form.Field>
+  );
 }
 
 TextBox.propTypes = {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navbar, Button } from 'react-bulma-components';
@@ -8,38 +8,26 @@ import { getIsLoggedIn } from '../state/selectors/user.selectors';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/imgs/macro-tracker-logo.png';
 
-class PrimaryNav extends Component {
-  constructor(props) {
-    super(props);
+function PrimaryNav(props) {
+  const { menuIsOpen, isLoggedIn } = props;
+  const iconName = menuIsOpen ? 'fa-times' : 'fa-bars';
 
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.togglePrimaryMenu();
-  }
-
-  render() {
-    const { menuIsOpen, isLoggedIn } = this.props;
-    const iconName = menuIsOpen ? 'fa-times' : 'fa-bars';
-
-    return (
-      <Navbar color="dark" className="primary-nav">
-        <Navbar.Brand>
-          <Link to="/" className="is-size- has-text-white"><img alt="MacroTracker" src={Logo} /></Link>
-        </Navbar.Brand>
-        {isLoggedIn && (
-          <Button
-            color="primary"
-            className="primary-nav-button"
-            onClick={this.handleClick}
-          >
-            <i className={`fa ${iconName}`} aria-hidden="true"></i>
-          </Button>
-        )}
-      </Navbar>
-    );
-  }
+  return (
+    <Navbar color="dark" className="primary-nav">
+      <Navbar.Brand>
+        <Link to="/" className="is-size- has-text-white"><img alt="MacroTracker" src={Logo} /></Link>
+      </Navbar.Brand>
+      {isLoggedIn && (
+        <Button
+          color="primary"
+          className="primary-nav-button"
+          onClick={props.togglePrimaryMenu}
+        >
+          <i className={`fa ${iconName}`} aria-hidden="true"></i>
+        </Button>
+      )}
+    </Navbar>
+  );
 }
 
 PrimaryNav.defaultProps = {

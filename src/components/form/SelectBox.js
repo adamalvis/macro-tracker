@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bulma-components';
 
-class SelectBox extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.handleChange = this.handleChange.bind(this);
-  }
+function SelectBox(props) {
+  const { options, label, error, value, onChange } = props;
 
-  handleChange(e) {
-    const { onChange } = this.props;
+  function handleChange(e) {
     const { value } = e.target;
 
     if (typeof onChange === 'function') {
@@ -18,28 +13,24 @@ class SelectBox extends Component {
     }
   }
 
-  render() {
-    const { options, label, error, value } = this.props;
-
-    return (
-      <Form.Field>
-        {label && (
-          <Form.Label>{label}</Form.Label>
+  return (
+    <Form.Field>
+      {label && (
+        <Form.Label>{label}</Form.Label>
+      )}
+      <Form.Control>
+        <Form.Select onChange={handleChange} value={value}>
+          <option></option>
+          {Array.isArray(options) && options.map(option => (
+            <option key={`option-${option.value}`} value={option.value}>{option.label}</option>
+          ))}
+        </Form.Select>
+        {error && (
+          <Form.Help color="danger">{error}</Form.Help>
         )}
-        <Form.Control>
-          <Form.Select onChange={this.handleChange} value={value}>
-            <option></option>
-            {Array.isArray(options) && options.map(option => (
-              <option key={`option-${option.value}`} value={option.value}>{option.label}</option>
-            ))}
-          </Form.Select>
-          {error && (
-            <Form.Help color="danger">{error}</Form.Help>
-          )}
-        </Form.Control>
-      </Form.Field>
-    );
-  }
+      </Form.Control>
+    </Form.Field>
+  );
 }
 
 const valuePropTypes = PropTypes.oneOfType([

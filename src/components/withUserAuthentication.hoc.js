@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUserToken, hasVerifiedEmail } from '../state/selectors/user.selectors';
 import Login from '../pages/Login';
@@ -7,10 +7,10 @@ import { validateToken } from '../state/actions/user.actions';
 import UnverifiedEmail from './UnverifiedEmail';
 
 export function withUserAuthentication(WrappedComponent) {
-  class Wrapper extends Component {
-    componentDidMount() {
-      const { token, validateToken } = this.props;
+  function Wrapper(props) {
+    const { token, validateToken, hasVerifiedEmail } = props;
 
+    useEffect(() => {
       if (!token) {
         const storedToken = getAuthToken();
 
@@ -18,21 +18,17 @@ export function withUserAuthentication(WrappedComponent) {
           validateToken(storedToken);
         }
       }
+    });
+
+    let RenderedComponent = WrappedComponent;
+
+    if (!token) {
+      RenderedComponent = Login;
+    } else if (!hasVerifiedEmail) {
+      RenderedComponent = UnverifiedEmail;
     }
 
-    render() {
-      const { token, hasVerifiedEmail } = this.props;
-
-      let RenderedComponent = WrappedComponent;
-
-      if (!token) {
-        RenderedComponent = Login;
-      } else if (!hasVerifiedEmail) {
-        RenderedComponent = UnverifiedEmail;
-      }
-
-      return <RenderedComponent {...this.props} />;
-    }
+    return <RenderedComponent {...props} />;
   }
 
   const mapStateToProps = state => ({

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextBox from '../components/form/TextBox';
@@ -7,44 +7,25 @@ import { register } from '../state/actions/user.actions';
 import { isValidEmail, isValidPassword } from '../utilities/validation.utility';
 import UnverifiedEmail from '../components/UnverifiedEmail';
 
-const FIELDS = {
-  NAME: 'name',
-  EMAIL: 'email',
-  PASSWORD: 'password',
-  CONFIRMED_PASSWORD: 'confirmedPassword',
-}
+function Register(props) {
+  const { registeredSuccessfully, register } = props;
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmedPassword, setConfirmedPassword] = useState('');
+  const [errors, setErrors] = useState({});
 
-    this.state = {
-      [FIELDS.NAME]: '',
-      [FIELDS.EMAIL]: '',
-      [FIELDS.PASSWORD]: '',
-      [FIELDS.CONFIRMED_PASSWORD]: '',
-      errors: {},
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    const { name, email, password } = this.state;
     
-    if(this.formIsValid()) {
-      this.props.register(name, email, password);
+    if(formIsValid()) {
+      register(name, email, password);
     }
   }
 
-  handleInputChange(value, field) {
-    this.setState({ [field]: value });
-  }
-
-  formIsValid() {
+  function formIsValid() {
     const errors = {};
-    const { name, email, password, confirmedPassword } = this.state;
 
     if (!name || name.length < 2) {
       errors.name = 'Enter a valid name';
@@ -66,64 +47,59 @@ class Register extends Component {
       errors.password = 'Passwords do not match';
     }
 
-    this.setState({ errors });
+    setErrors(errors);
 
     return Object.keys(errors).length === 0;
   }
 
-  render() {
-    const { errors, name, email, password, confirmedPassword } = this.state;
-    const { registeredSuccessfully } = this.props;
-
-    return (
-      <div className="registration-page">
-        {registeredSuccessfully && (
-          <UnverifiedEmail title="Registration successful" />
-        )}
-        {!registeredSuccessfully && (
-          <div>
-            <h2 className="title is-2">Register</h2>
-            <form className="login-form" onSubmit={this.handleSubmit}>
-              <TextBox
-                value={name}
-                error={errors?.name}
-                onChange={value => this.handleInputChange(value, FIELDS.NAME)}
-                label="Full name"
-              />
-              <TextBox
-                value={email}
-                error={errors?.email}
-                onChange={value => this.handleInputChange(value, FIELDS.EMAIL)}
-                label="Email address"
-              />
-              <TextBox
-                type="password"
-                value={password}
-                error={errors?.password}
-                onChange={value => this.handleInputChange(value, FIELDS.PASSWORD)}
-                label="Password"
-              />
-              <p className="is-size-6">Password rules:</p>
-              <ul className="is-size-7" style={{ marginBottom: '10px' }}>
-                <li>Must be at least 8 characters long</li>
-                <li>Can contain these symbols: $ # @ *</li>
-              </ul>
-              <TextBox
-                type="password"
-                value={confirmedPassword}
-                error={errors?.confirmedPassword}
-                onChange={value => this.handleInputChange(value, FIELDS.CONFIRMED_PASSWORD)}
-                label="Confirm password"
-              />
-              <Button color="primary">
-                Register
-              </Button>
-            </form>
-          </div>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div className="registration-page">
+      {registeredSuccessfully && (
+        <UnverifiedEmail title="Registration successful" />
+      )}
+      {!registeredSuccessfully && (
+        <div>
+          <h2 className="title is-2">Register</h2>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <TextBox
+              value={name}
+              error={errors?.name}
+              onChange={value => setName(value)}
+              label="Full name"
+            />
+            <TextBox
+              value={email}
+              error={errors?.email}
+              onChange={value => setEmail(value)}
+              label="Email address"
+            />
+            <TextBox
+              type="password"
+              value={password}
+              error={errors?.password}
+              onChange={value => setPassword(value)}
+              label="Password"
+            />
+            <p className="is-size-6">Password rules:</p>
+            <ul className="is-size-7" style={{ marginBottom: '10px' }}>
+              <li>Must be at least 8 characters long</li>
+              <li>Can contain these symbols: $ # @ *</li>
+            </ul>
+            <TextBox
+              type="password"
+              value={confirmedPassword}
+              error={errors?.confirmedPassword}
+              onChange={value => setConfirmedPassword(value)}
+              label="Confirm password"
+            />
+            <Button color="primary">
+              Register
+            </Button>
+          </form>
+        </div>
+      )}
+    </div>
+  );
 }
 
 Register.propTypes = {

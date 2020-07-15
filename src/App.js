@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -14,33 +14,31 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-class App extends Component {
-  render() {
-    return (
-      <div className="app-container">
-        <Provider store={store}>
-          <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <PrimaryNav />
-            <PrimaryMenu />
-            <div className="page-container">
-              <Section>
-                <Container>
-                  <Switch>
-                    {Object.values(PAGES).map((page, index) => (
-                      <Route exact path={page.path} key={`page-${index}`}>
-                        <page.component />
-                      </Route>
-                    ))}
-                  </Switch>
-                </Container>
-              </Section>
-              <Notifications />
-            </div>
-          </BrowserRouter>
-        </Provider>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="app-container">
+      <Provider store={store}>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <PrimaryNav />
+          <PrimaryMenu />
+          <div className="page-container">
+            <Section>
+              <Container>
+                <Switch>
+                  {Object.values(PAGES).map((page, index) => (
+                    <Route exact path={page.path} key={`page-${index}`}>
+                      <page.component />
+                    </Route>
+                  ))}
+                </Switch>
+              </Container>
+            </Section>
+            <Notifications />
+          </div>
+        </BrowserRouter>
+      </Provider>
+    </div>
+  );
 }
 
 export default App;

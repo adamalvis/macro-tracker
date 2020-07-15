@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withUserAuthentication } from '../components/withUserAuthentication.hoc';
 import { getActiveUser } from '../state/selectors/user.selectors';
@@ -8,10 +8,10 @@ import { loadTargets } from '../state/actions/targets.actions';
 import AddFoodButton from '../components/AddFoodButton';
 import FoodCategories from '../components/FoodCategories';
 
-class Home extends Component {
-  componentDidMount() {
-    const { loadTodaysFood, loadTargets, todaysFood, targets } = this.props;
+function Home(props) {
+  const { loadTodaysFood, loadTargets, todaysFood, targets } = props;
 
+  useEffect(() => {
     if (!todaysFood || todaysFood.length < 1) {
       loadTodaysFood();
     }
@@ -19,31 +19,18 @@ class Home extends Component {
     if (!targets || !targets.isLoaded) {
       loadTargets();
     }
-  }
+  });
 
-  render() {
-    const { todaysFood, targets } = this.props;
-
-    // if (!targets.isUpdated) {
-    //   return (
-    //     <div>
-    //       <p>It looks like you haven't updated your macro targets yet. Please click below to set your daily targets.</p>
-    //       <Button style={{ marginTop: '10px' }} color="primary">Update Targets</Button>
-    //     </div>
-    //   );
-    // }
-
-    return (
-      <div className="home-page">
-        <DailyTargets
-          targets={targets}
-          food={todaysFood}
-        />
-        <FoodCategories food={todaysFood} />
-        <AddFoodButton onClick={this.handleAddFoodButtonClick} />
-      </div>
-    );
-  }
+  return (
+    <div className="home-page">
+      <DailyTargets
+        targets={targets}
+        food={todaysFood}
+      />
+      <FoodCategories food={todaysFood} />
+      <AddFoodButton />
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({

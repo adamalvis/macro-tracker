@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,49 +11,27 @@ import { PAGES, PAGE_NAMES } from '../constants/navigation';
 import { isValidMacro } from '../constants/food';
 import { addFood } from '../state/actions/food.actions';
 
-class AddFood extends Component {
-  constructor(props) {
-    super(props);
+function AddFood(props) {
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [calories, setCalories] = useState(0);
+  const [protein, setProtein] = useState(0);
+  const [fat, setFat] = useState(0);
+  const [carbohydrates, setCarbohydrates] = useState(0);
+  const [errors, setErrors] = useState({});
 
-    this.state = {
-      name: '',
-      category: '',
-      calories: 0,
-      protein: 0,
-      fat: 0,
-      carbohydrates: 0,
-      errors: {},
-    }
+  const categoryOptions = getCategoriesAsOptions();
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange(value, field) {
-    this.setState({
-      [field]: value,
-    });
-  }
-
-  handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     
-    if (this.formIsValid()) {
-      this.submitForm();
+    if (formIsValid()) {
+      submitForm();
     }
   }
 
-  submitForm() {
-    const {
-      name,
-      category,
-      calories,
-      protein,
-      fat,
-      carbohydrates,
-    } = this.state;
-    
-    this.props.addFood({
+  function submitForm() {
+    props.addFood({
       name,
       category,
       calories,
@@ -63,18 +41,10 @@ class AddFood extends Component {
     });
 
     // redirect to homepage
-    this.props.history.push('/');
+    props.history.push('/');
   }
 
-  formIsValid() {
-    const {
-      name,
-      category,
-      calories,
-      protein,
-      fat,
-      carbohydrates,
-    } = this.state;
+  function formIsValid() {
     const errors = {};
 
     if (!name || typeof name !== 'string' || name.length < 3) {
@@ -105,87 +75,74 @@ class AddFood extends Component {
       errors.carbohydrates = 'Please enter a valid number';
     }
 
-    this.setState({ errors });
+    setErrors(errors);
 
     return Object.keys(errors).length === 0;
   }
 
-  render() {
-    const {
-      name,
-      category,
-      calories,
-      protein,
-      fat,
-      carbohydrates,
-      errors,
-    } = this.state;
-    const categoryOptions = getCategoriesAsOptions();
-
-    return (
-      <div>
-        <h2 className="is-size-2">New Food Item</h2>
-        <form onSubmit={this.handleSubmit}>
-          <TextBox
-            value={name}
-            error={errors?.name}
-            onChange={value => this.handleInputChange(value, 'name')}
-            label="Name"
-          />
-          <SelectBox
-            label="Category"
-            value={category}
-            onChange={value => this.handleInputChange(value, 'category')}
-            options={categoryOptions}
-            error={errors?.category}
-          />
-          <TextBox
-            type="number"
-            value={calories}
-            error={errors?.calories}
-            onChange={value => this.handleInputChange(value, 'calories')}
-            label="Calories"
-          />
-          <TextBox
-            type="number"
-            value={protein}
-            error={errors?.protein}
-            onChange={value => this.handleInputChange(value, 'protein')}
-            label="Protein"
-          />
-          <TextBox
-            type="number"
-            value={fat}
-            error={errors?.fat}
-            onChange={value => this.handleInputChange(value, 'fat')}
-            label="Fat"
-          />
-          <TextBox
-            type="number"
-            value={carbohydrates}
-            error={errors?.carbohydrates}
-            onChange={value => this.handleInputChange(value, 'carbohydrates')}
-            label="Carbohydrates"
-          />
-          <Button
-            color="primary"
-            className="is-medium is-fullwidth"
-            style={{ marginBottom: '15px', marginTop: '30px' }}
-            onClick={this.handleSubmit}
-          >
-            Add Food
-          </Button>
-          <Link
-            color="light"
-            className="button is-medium is-fullwidth"
-            to={PAGES[PAGE_NAMES.HOME].path}
-          >
-            Cancel
-          </Link>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h2 className="is-size-2">New Food Item</h2>
+      <form onSubmit={handleSubmit}>
+        <TextBox
+          value={name}
+          error={errors?.name}
+          onChange={value => setName(value)}
+          label="Name"
+        />
+        <SelectBox
+          label="Category"
+          value={category}
+          onChange={value => setCategory(value)}
+          options={categoryOptions}
+          error={errors?.category}
+        />
+        <TextBox
+          type="number"
+          value={calories}
+          error={errors?.calories}
+          onChange={value => setCalories(value)}
+          label="Calories"
+        />
+        <TextBox
+          type="number"
+          value={protein}
+          error={errors?.protein}
+          onChange={value => setProtein(value)}
+          label="Protein"
+        />
+        <TextBox
+          type="number"
+          value={fat}
+          error={errors?.fat}
+          onChange={value => setFat(value)}
+          label="Fat"
+        />
+        <TextBox
+          type="number"
+          value={carbohydrates}
+          error={errors?.carbohydrates}
+          onChange={value => setCarbohydrates(value)}
+          label="Carbohydrates"
+        />
+        <Button
+          color="primary"
+          className="is-medium is-fullwidth"
+          style={{ marginBottom: '15px', marginTop: '30px' }}
+          onClick={handleSubmit}
+        >
+          Add Food
+        </Button>
+        <Link
+          color="light"
+          className="button is-medium is-fullwidth"
+          to={PAGES[PAGE_NAMES.HOME].path}
+        >
+          Cancel
+        </Link>
+      </form>
+    </div>
+  );
 }
 
 AddFood.propTypes = {

@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Notification, Button } from 'react-bulma-components';
 import { removeNotification } from '../state/actions/notifications.actions';
 
-class Notifications extends Component {
-  handleRemoveClick(id) {
-    this.props.removeNotification(id);
-  }
+function Notifications(props) {
+  const { msgs } = props;
 
-  render() {
-    const { msgs } = this.props;
-
-    return (
-      <div className="notification-pane">
-        {msgs.length > 0 && msgs.map(msg => (
-          <Notification color={msg.color}>
-            {msg.text}
-            <Button remove onClick={() => this.handleRemoveClick(msg.id)} />
-          </Notification>
-        ))}
-      </div>
-    )
-  }
+  return (
+    <div className="notification-pane">
+      {msgs.length > 0 && msgs.map(msg => (
+        <Notification color={msg.color}>
+          {msg.text}
+          <Button remove onClick={() => props.removeNotification(msg.id)} />
+        </Notification>
+      ))}
+    </div>
+  );
 }
 
 Notifications.propTypes = {
